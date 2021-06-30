@@ -1,29 +1,31 @@
-class LootBox<T>(item: T) {
+class LootBox<T : Loot>(vararg item: T) {
     var open = false
-    private var loot:T =item
+    private var loot:Array<out T> =item
 
-    fun fetch(): T?{
-        return loot.takeIf { open }
+    fun fetch(item: Int): T?{
+        return loot[item].takeIf { open }
     }
-    fun <R> fetch(lootModFunction: (T) ->R): R?{
-        return lootModFunction(loot).takeIf { open }
+    fun <R> fetch(item: Int, lootModFunction: (T) ->R): R?{
+        return lootModFunction(loot[item]).takeIf { open }
     }
 }
 
-class Fedora(val name: String, val value:Int)
+open class Loot(val value: Int)
 
-class Coin(val value: Int)
+class Fedora(val name: String, value:Int):Loot(value)
+
+class Coin(value: Int):Loot(value)
 
 fun main(arg: Array<String>){
-    val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("a generic-looking fedora",15))
+    val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("a generic-looking fedora",15),Fedora("a dazzling magenta fedora", 25))
     val lootBoxTwo: LootBox<Coin> = LootBox(Coin(15))
 
     lootBoxOne.open = true
-    lootBoxOne.fetch()?.run {
-        println("You retrieve $name from the box!")
+    lootBoxOne.fetch(1)?.run {
+        println("妳從抽獎箱抽到一頂 $name !")
     }
-    val coin=lootBoxOne.fetch(){
+    val coin=lootBoxOne.fetch(0){
         Coin(it.value*3)
     }
-    coin?.let { println(it.value) }
+    coin?.let { println("價值 ${it.value} 個金幣") }
 }
