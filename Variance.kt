@@ -1,10 +1,12 @@
-class Barrel< T>(var item: T) {
-}
+class Barrel<in T>( item: T)
 
-fun main(arg: Array<String>){
-    var fadoraBarrel: Barrel<Fedora> = Barrel(Fedora("a generic-looking fedora", 15))
+fun main(args: Array<String>) {
+    var fedoraBarrel: Barrel<Fedora> = Barrel(Fedora("a generic-looking fedora", 15))
     var lootBarrel: Barrel<Loot> = Barrel(Coin(15))
 
-    lootBarrel = fedoraBarrel
-    lootBarrel.item =Coin(15)
+
+    fedoraBarrel = lootBarrel
+
+    //val myFedora: Fedora = lootBarrel.item
+    //println(myFedora.name)
 }

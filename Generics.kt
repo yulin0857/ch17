@@ -18,8 +18,8 @@ class Fedora(val name: String, value:Int):Loot(value)
 
 class Coin(value: Int):Loot(value)
 
-fun main(arg: Array<String>){
-    val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("a generic-looking fedora",15),Fedora("a dazzling magenta fedora", 25))
+fun main(args: Array<String>){
+    val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("通用軟泥帽",15),Fedora("耀眼的洋紅色軟泥帽", 25))
     val lootBoxTwo: LootBox<Coin> = LootBox(Coin(15))
 
     lootBoxOne.open = true
