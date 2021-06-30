@@ -30,4 +30,7 @@ fun main(arg: Array<String>){
         Coin(it.value*3)
     }
     coin?.let { println("價值 ${it.value} 個金幣") }
+
+    val fedora = lootBoxOne[1]
+    fedora?.let { println(it.name) }
 }
