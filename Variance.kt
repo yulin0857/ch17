@@ -6,5 +6,5 @@ fun main(arg: Array<String>){
     var lootBarrel: Barrel<Loot> = Barrel(Coin(15))
 
     lootBarrel = fedoraBarrel
-
+    lootBarrel.item =Coin(15)
 }
