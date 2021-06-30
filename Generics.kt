@@ -14,4 +14,8 @@ class Coin(val value: Int)
 fun main(arg: Array<String>){
     val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("a generic-looking fedora",15))
     val lootBoxTwo: LootBox<Coin> = LootBox(Coin(15))
+
+    lootBoxOne.fetch()?.run {
+        println("You retrieve $name from the box!")
+    }
 }
